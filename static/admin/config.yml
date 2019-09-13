@@ -1,0 +1,21 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: "menu"
+    label: "Menu"
+    folder: "content/menu"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+     preview: false
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Price", name: "price", widget: "number" }
+      - { label: "Number", name: "number", widget: "number" }
+      - { label: "Spicy", name: "spicy", widget: "boolean" }
+      - { label: "Description", name: "description", widget: "boolean" }
