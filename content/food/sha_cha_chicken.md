@@ -1,9 +1,9 @@
 ---
-title: test
+title: Sa Cha Chicken
 categories:
   - lunch
   - dinner
-description: test 123
+description: spicy chicken
 type: chicken
 prices:
   - 5
