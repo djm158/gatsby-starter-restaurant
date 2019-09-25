@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `China Wok`,
+    description: `211 Green Lane, Philadelphia PA. We deliver fresh and delicious chinese food to the Manayunk/Roxborough area. Call (215) 482-8224 for delivery or pick up today!`,
+    author: `Daniel McGrath`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -15,6 +15,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,

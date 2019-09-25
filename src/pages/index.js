@@ -3,42 +3,82 @@ import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { graphql } from "gatsby";
+import styled from "styled-components";
+import { Box, Flex, Text } from "rebass";
+
+const GroupTitle = styled.h2`
+  color: #b31e29; /* TOOD: get from theme */
+  letter-spacing: 1.2px;
+  margin-bottom: 24px;
+  text-transform: capitalize;
+`;
+
+const GroupList = styled.ul`
+  list-style: none;
+`;
+
+const MenuList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 600px;
+`;
 
 const IndexPage = ({ data }) => {
-  console.log(data.allMarkdownRemark.group);
   const groups = data.allMarkdownRemark.group;
   return (
     <Layout>
       <SEO title="Home" />
-      <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <ul>
-        {groups.map(g => {
-          return (
-            <li key={g.fieldValue}>
-              <div>
-                <h1>{g.fieldValue}</h1>
-                {getStuff(g)}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      <FoodGroups groups={groups} />
     </Layout>
   );
 };
 
-const getStuff = thing => {
-  return thing.edges.map(edge => {
-    return (
-      <div key={edge.node.id}>
-        <h2>{edge.node.frontmatter.title}</h2>
-        <p>{edge.node.frontmatter.description}</p>
-      </div>
-    );
-  });
+const MenuItem = props => {
+  const { description, title, prices } = props;
+  return (
+    <>
+      <Flex>
+        <Box width={2 / 3}>
+          <Text>{title}</Text>
+        </Box>
+        <Box width={1 / 3}>
+          <Flex>
+            {prices.map((price, index) => (
+              <Box key={index} p={1}>
+                <Text fontWeight="bold">{price}</Text>
+              </Box>
+            ))}
+          </Flex>
+        </Box>
+      </Flex>
+      {description ? <Text>{description}</Text> : null}
+    </>
+  );
 };
+
+const FoodGroups = ({ groups }) => (
+  <GroupList>
+    {groups.map(group => {
+      return (
+        <li key={group.fieldValue}>
+          <div>
+            <GroupTitle>{group.fieldValue}</GroupTitle>
+            <MenuList>
+              {group.edges.map(edge => {
+                return (
+                  <li key={edge.node.id}>
+                    <MenuItem {...edge.node.frontmatter}></MenuItem>
+                  </li>
+                );
+              })}
+            </MenuList>
+          </div>
+        </li>
+      );
+    })}
+  </GroupList>
+);
 
 export default IndexPage;
 
