@@ -4,8 +4,6 @@ import { MenuItem } from '../../pages/index'
 
 const FoodItemPreview = ({ entry }) => {
   const data = entry.getIn(['data']).toJS()
-  console.log(data);
-  console.log('here');
   if (data) {
     return (
       <MenuItem
