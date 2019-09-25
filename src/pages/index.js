@@ -34,7 +34,7 @@ const IndexPage = ({ data }) => {
   );
 };
 
-const MenuItem = props => {
+export const MenuItem = props => {
   const { description, title, prices } = props;
   return (
     <>
